@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, Briefcase, MapPin } from 'lucide-react';
+import { TrendingUp, Briefcase, MapPin, Calendar, Sparkles } from 'lucide-react';
 
 const POPULAR_ROLES = [
   { role: "Event Promoters", count: "120+ Gigs", tag: "High Demand" },
@@ -12,8 +12,27 @@ const POPULAR_ROLES = [
   { role: "Crowd Management Assistants", count: "75+ Gigs", tag: "Daily Wage" },
 ];
 
-const TOP_CITIES = [
-  "Delhi NCR", "Noida", "Gurugram", "Mumbai", "Bengaluru", "Pune", "Hyderabad", "Jaipur", "Chandigarh"
+const CITY_EVENT_HUBS = [
+  {
+    city: "Bangalore / Bengaluru",
+    popularEvents: "Tech Summits (BIEC), Live Music Concerts, Startup Meetups, College Fests",
+    highlight: "Top Tech Hub",
+  },
+  {
+    city: "Delhi NCR & Noida",
+    popularEvents: "Pragati Maidan Expos, Auto Shows, Corporate Conferences, Luxury Weddings",
+    highlight: "Capital Region",
+  },
+  {
+    city: "Mumbai",
+    popularEvents: "Film Awards, Trade Shows (BKC, Nesco), Celebrity Events, Marathon Drives",
+    highlight: "Entertainment Hub",
+  },
+  {
+    city: "Pune & Hyderabad",
+    popularEvents: "HITEX Summits, Cultural Fests, Sports Leagues, Food Festivals",
+    highlight: "High Growth",
+  },
 ];
 
 export default function SearchKeywords() {
@@ -21,59 +40,72 @@ export default function SearchKeywords() {
     <section className="py-4 sm:py-8 border-y border-white/[0.06] bg-slate-950/40 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 sm:gap-4 mb-6">
           <div>
             <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-400 mb-1">
               <TrendingUp className="w-3 h-3" />
-              <span>In-Demand Event Roles & Gigs</span>
+              <span>Trending Searches & City Hubs</span>
             </div>
             <h2 className="text-base sm:text-lg md:text-xl font-extrabold text-white tracking-tight">
-              Top Searched Event Opportunities & Manpower Services
+              Popular Events & Staffing Gigs by City
             </h2>
           </div>
           <p className="text-xs text-slate-400 max-w-sm">
-            Connecting thousands of daily-paid event professionals with top brands, wedding hosts, and corporate summits.
+            Discover upcoming events in Bangalore, Delhi NCR, Mumbai, and hire verified local event staff.
           </p>
         </div>
 
-        {/* Roles Pill Grid */}
+        {/* City Event Hub Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 mb-6">
-          {POPULAR_ROLES.map((item, idx) => (
+          {CITY_EVENT_HUBS.map((hub, idx) => (
             <div
               key={idx}
-              className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-brand-500/40 hover:bg-brand-950/20 transition-all flex items-center justify-between group cursor-default"
+              className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-brand-500/40 transition-all flex flex-col justify-between"
             >
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0">
-                  <Briefcase className="w-3.5 h-3.5" />
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-brand-400" />
+                    {hub.city}
+                  </span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20">
+                    {hub.highlight}
+                  </span>
                 </div>
-                <div>
-                  <h3 className="text-xs sm:text-sm font-semibold text-white group-hover:text-brand-300 transition-colors">
-                    {item.role}
-                  </h3>
-                  <p className="text-[10px] text-slate-500">{item.count}</p>
-                </div>
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  {hub.popularEvents}
+                </p>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
-                {item.tag}
-              </span>
+              <div className="mt-3 pt-2 border-t border-white/[0.04] text-[10px] font-semibold text-emerald-400 flex items-center gap-1">
+                <Calendar className="w-3 h-3" />
+                <span>Events & Daily Gigs Live</span>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Popular Cities Bar */}
-        <div className="pt-4 border-t border-white/[0.06] flex flex-wrap items-center gap-2">
-          <span className="text-xs font-semibold text-slate-400 flex items-center gap-1 mr-1">
-            <MapPin className="w-3.5 h-3.5 text-brand-400" /> Active Cities:
-          </span>
-          {TOP_CITIES.map((city, idx) => (
-            <span
-              key={idx}
-              className="text-xs px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.06] cursor-default"
-            >
-              {city}
-            </span>
-          ))}
+        {/* Roles Pill Grid */}
+        <div className="pt-4 border-t border-white/[0.06]">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
+            <Briefcase className="w-3.5 h-3.5 text-brand-400" />
+            In-Demand Roles (Daily Paid ₹1,000 - ₹3,500/day):
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+            {POPULAR_ROLES.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.06] flex items-center justify-between"
+              >
+                <span className="text-xs font-medium text-slate-300">
+                  {item.role}
+                </span>
+                <span className="text-[10px] font-bold text-emerald-400">
+                  {item.tag}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
