@@ -28,44 +28,44 @@ export default function FAQ() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section className="py-20 sm:py-28 relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-4 sm:py-8 relative">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-400 mb-2">
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-brand-400 mb-1">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Got Questions?</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-base sm:text-lg md:text-xl font-extrabold text-white tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-400">
+          <p className="mt-1.5 text-xs text-slate-400">
             Learn more about how MyEventMitra connects event organizers with daily paid staff and volunteers.
           </p>
         </div>
 
-        <div className="space-y-3.5">
+        <div className="space-y-2 sm:space-y-2.5">
           {FAQS.map((item, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div
                 key={idx}
-                className="rounded-2xl border border-white/[0.08] bg-slate-900/50 backdrop-blur-sm overflow-hidden transition-colors"
+                className="rounded-xl border border-white/[0.08] bg-slate-900/50 backdrop-blur-sm overflow-hidden"
               >
                 <button
                   onClick={() => setOpenIdx(isOpen ? -1 : idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-white/[0.02] transition"
+                  className="w-full p-3.5 sm:p-4 text-left flex items-center justify-between gap-3 cursor-pointer hover:bg-white/[0.02] transition"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-bold text-sm sm:text-base text-white">
+                  <span className="font-semibold text-xs sm:text-sm text-white">
                     {item.q}
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-brand-400' : ''}`}
+                    className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-brand-400' : ''}`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/[0.04] pt-4">
+                  <div className="px-3.5 pb-4 sm:px-4 sm:pb-4 text-xs text-slate-300 leading-relaxed border-t border-white/[0.04] pt-2.5">
                     {item.a}
                   </div>
                 )}
